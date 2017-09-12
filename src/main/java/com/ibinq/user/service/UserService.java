@@ -1,6 +1,9 @@
 package com.ibinq.user.service;
 
 import com.ibinq.user.entity.User;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/9/1.
@@ -26,4 +29,8 @@ public interface UserService {
      * @return
      */
     User findUserById(int id);
+
+    List<User> findUserAll(@Param("offset") int offset, @Param("limit") int limit);
+
+    Integer findUserAllCount();
 }

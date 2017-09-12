@@ -1,6 +1,7 @@
 package com.ibinq.user.dao;
 
 import com.ibinq.user.entity.User;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -29,6 +30,7 @@ public interface UserDao {
      */
     User findUserById(int id);
 
-   // List<User> findUserAll();
+    List<User> findUserAll(@Param("offset") int offset, @Param("limit") int limit);
 
+    Integer findUserAllCount();
 }
