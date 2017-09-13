@@ -38,4 +38,15 @@
     <!-- 开启事务控制的注解支持 -->
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
-        </beans>
+    <!--拦截器 -->
+    <!--多个拦截器,顺序执行 -->
+    <mvc:interceptors>
+
+        <mvc:interceptor>
+            <mvc:mapping path="/**" />
+            <bean class="com.ibinq.interceptor.EncodeInterceptor"></bean>
+        </mvc:interceptor>
+
+    </mvc:interceptors>
+
+</beans>

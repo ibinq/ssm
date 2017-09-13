@@ -30,6 +30,8 @@ public interface UserService {
      */
     User findUserById(int id);
 
+    User findUserByUsernameAndPassworld(@Param("username") String username ,@Param("password") String password);
+
     List<User> findUserAll(@Param("offset") int offset, @Param("limit") int limit);
 
     Integer findUserAllCount();

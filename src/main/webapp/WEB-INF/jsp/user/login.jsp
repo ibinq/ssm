@@ -4,7 +4,7 @@
 <html>
 <body>
 <h2>Hello home!</h2>
-<form action="/user/addUser" method="post">
+<form action="/user/login" method="post">
     <input name="username" type="text">
     <input name="password" type="password">
     <button type="submit">提交</button>

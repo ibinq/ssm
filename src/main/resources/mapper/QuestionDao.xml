@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ibinq.question.dao.QuestionDao">
+    <!--目的：为dao接口提供sql语句配置-->
+    <insert id="addQuestion" parameterType="com.ibinq.question.entity.Question" >
+        INSERT INTO question(title,uid)
+        VALUES (#{title},#{uid})
+    </insert>
+    <select id="findQuestionById" parameterType="int" resultType="com.ibinq.question.entity.Question">
+        SELECT * FROM question WHERE id=#{id}
+    </select>
+
+    <select id="findQuestionByName" parameterType="String" resultType="com.ibinq.question.entity.Question">
+        SELECT * FROM question WHERE title=#{name}
+    </select>
+
+    <select id="findQuestionAll" resultType="com.ibinq.question.entity.Question">
+        SELECT * FROM question
+    </select>
+
+    <update id="updateQuestion" parameterType="com.ibinq.question.entity.Question"   >
+        UPDATE
+          question
+        <trim prefix="set" suffixOverrides=",">
+            <if test="look!=null">
+                look=#{look},
+            </if>
+            <if test="follow!=null">
+                follow=#{follow},
+            </if>
+        </trim>
+        WHERE
+          id=#{id}
+    </update>
+
+</mapper>

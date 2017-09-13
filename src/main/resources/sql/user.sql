@@ -2,6 +2,20 @@ CREATE DATABASE zhihu
 
 USE zhihu
 
+/*创建QUestion表*/
+CREATE TABLE question(
+  id INT AUTO_INCREMENT,
+  title VARCHAR(300) NOT NULL ,
+  uid int NOT NULL ,
+  content VARCHAR(800),
+  follow int ,
+  look int,
+  askTime DATE ,
+   PRIMARY KEY ( id ),
+   FOREIGN KEY (uid) REFERENCES USER(id)
+)ENGINE=INNODB DEFAULT CHARSET=utf8;
+
+/*创建User表*/
 CREATE TABLE USER(
 id INT AUTO_INCREMENT,
 username VARCHAR(20) NOT NULL,

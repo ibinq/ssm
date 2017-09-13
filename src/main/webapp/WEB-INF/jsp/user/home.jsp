@@ -8,19 +8,22 @@
 <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <style>
-    div{
-      /* border: 1px solid black;*/
+ /*   div{
+        border: 1px solid red;
+    }*/
+    *{
+        margin: 0;
+        padding: 0;
     }
-
 </style>
-<body style="background-color: #F3F3F3">
-<div class="row" style="height: 55px;background-color: white;box-shadow:1px 1px 1px #DDDFE0">
+<body style="background-color: #F3F3F3;overflow:-Scroll;overflow-x:hidden">
+<div class="row" style="height: 55px;width:100%;background-color: white;box-shadow:1px 1px 1px #DDDFE0;position: fixed;z-index: 2">
     <div class="col-md-3">
     </div>
     <div class="col-md-6">
         <div class="row" style="margin-top: 5px ;" >
             <div class="col-md-1">
-                <img src="../../img/logo.png" style="cursor: pointer;">
+                <img src="../../../img/logo.png" style="cursor: pointer;">
             </div>
             <div class="col-md-1" style="margin-top: 10px">
                 <a style="text-decoration: none;cursor: pointer;"><span style="font-family: 'Adobe Caslon Pro';font-size: 16px;">首页</span></a>
@@ -32,23 +35,29 @@
                 <a style="text-decoration: none;cursor: pointer;"><span style="font-family: 'Adobe Caslon Pro';font-size: 16px;">话题</span></a>
             </div>
             <div class="col-md-3" style="margin-top: 10px">
-                <input type="text"  style="height: 30px;width: 230px" id="exampleInputName2" placeholder="搜索你感兴趣的内容...">
+                <input type="text"  style="height: 30px;width: 230px" id="questionContent" placeholder="搜索你感兴趣的内容...">
             </div>
             <div class="col-md-1" style="margin-top: 10px">
-                <button class="btn btn-primary" style="background-color: #0F88EB">提问</button>
+                <button data-toggle="modal" data-target="#questionmodal" class="btn btn-primary" style="background-color: #0F88EB">提问</button>
             </div>
             <div class="col-md-1" style="margin-top: 7px">
-                <img src="../../img/message.png" >
+                <img src="../../../img/message.png" >
             </div>
             <div class="col-md-1" style="margin-top: 10px">
-                <img src="../../img/duihua.png" >
+                <img src="../../../img/duihua.png" >
             </div>
-            <div class="col-md-1" style="margin-top: 10px">
-                <span >登录</span>
-            </div>
-            <div class="col-md-1" style="margin-top: 10px">
-                <span >注册</span>
-            </div>
+            <c:if test="${sessionScope.user!=null}">
+                ${sessionScope.user.username}
+            </c:if>
+            <c:if test="${sessionScope.user==null}">
+                <div class="col-md-1" style="margin-top: 10px">
+                    <a href="/user/loginPage"><span >登录</span></a>
+                </div>
+                <div class="col-md-1" style="margin-top: 10px">
+                    <a href="/user/registerPage"><span >注册</span></a>
+                </div>
+            </c:if>
+
 
         </div>
 
@@ -56,20 +65,20 @@
     <div class="col-md-3">
     </div>
 </div>
-<div class="row" style="margin-top: 10px;">
+<div class="row" style="margin-top: 0px; z-index: 1">
     <div class="col-md-3"></div>
-    <div class="col-md-4">
+    <div class="col-md-4" style="margin-top: 65px;z-index: 1">
         <div class="row" style="height: 70px;background-color: white;box-shadow:1px 1px 2px #DDDFE0">
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-2" style="margin-top: 15px">
-                        <img src="../../img/ask.png" style="cursor: pointer;">
+                        <img src="../../../img/ask.png" style="cursor: pointer;">
                     </div>
                     <div class="col-md-2" style="margin-top: 12px">
-                        <img src="../../img/anser.png"style="cursor: pointer;" >
+                        <img src="../../../img/anser.png" style="cursor: pointer;" >
                     </div>
                     <div class="col-md-2" style="margin-top: 12px">
-                        <img src="../../img/article.png" style="cursor: pointer;">
+                        <img src="../../../img/article.png" style="cursor: pointer;">
                     </div>
                     <div class="col-md-4">
 
@@ -80,8 +89,8 @@
                 </div>
             </div>
         </div>
-
-        <div class="row" style="height: 280px;margin-top: 10px;background-color: white;box-shadow:1px 1px 2px #DDDFE0">
+        <c:forEach items="${questions}" var="question">
+            <div class="row" style="height: 280px;margin-top: 10px;background-color: white;box-shadow:1px 1px 2px #DDDFE0">
             <div class="col-md-12">
                 <div class="row" >
                     <div class="col-md-12">
@@ -90,10 +99,10 @@
                 </div>
                 <div class="row" >
                     <div class="col-md-12">
-
+                        <a  href="/question/findQuestion?id=${question.id}" style="cursor: pointer"><span>${question.title}</span></a>
                     </div>
                 </div>
-                <div class="row" >
+               <%-- <div class="row" >
                     <div class="col-md-12">
 
                     </div>
@@ -107,11 +116,12 @@
                     <div class="col-md-12">
 
                     </div>
-                </div>
+                </div>--%>
             </div>
         </div>
+        </c:forEach>
     </div>
-    <div class="col-md-2" style="margin-left: 10px;">
+    <div class="col-md-2" style="margin-left: 60%;margin-top: 65px; position: fixed;">
         <div class="row" style="height: 175px;background-color: white;box-shadow:1px 1px 2px #DDDFE0">
             <div class="col-md-12"></div>
         </div>
@@ -121,5 +131,33 @@
     </div>
     <div class="col-md-3"></div>
 </div>
+
+
+<div class="modal fade" id="questionmodal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">写下你的问题</h4>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="questionTitle" class="form-control" placeholder="问题标题">
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" onclick="havaQuestion()" class="btn btn-primary">提交问题</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 </body>
+<script>
+   function havaQuestion() {
+       var questionTitle = $("#questionTitle").val();
+       //alert(questionTitle);
+       location.href="/question/addQuestion?questionTitle="+questionTitle;
+    }
+
+</script>
 </html>

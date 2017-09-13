@@ -29,6 +29,10 @@ public class UserServiceImpl implements UserService {
         return userDao.findUserById(id);
     }
 
+    public User findUserByUsernameAndPassworld(String username, String password) {
+        return userDao.findUserByUsernameAndPassworld(username,password);
+    }
+
     public List<User> findUserAll(@Param("offset") int offset, @Param("limit") int limit) {
         return userDao.findUserAll(offset,limit);
     }

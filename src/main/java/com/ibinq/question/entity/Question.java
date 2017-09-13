@@ -12,16 +12,16 @@ public class Question {
     private int id;
     private String title;//问题
     private String content;//问题追加描述
-    private List<String> descImg;//问题追加图片
-
-    private List<String> tags;//问题所在标签
-    private User user;//问题提出者
-    private Integer status;//1.正常 2.匿名
-    private List<String> answers;//回答列表
-
+    private int uid;//问题提出者
     private Integer follow;//关注
     private Integer look;//浏览数
     private Date askTime;//提问时间
+
+//    private List<String> tags;//问题所在标签
+//    private Integer status;//1.正常 2.匿名
+//    private List<String> answers;//回答列表
+//    private List<String> descImg;//问题追加图片
+
 
     public int getId() {
         return id;
@@ -47,44 +47,12 @@ public class Question {
         this.content = content;
     }
 
-    public List<String> getDescImg() {
-        return descImg;
+    public int getUid() {
+        return uid;
     }
 
-    public void setDescImg(List<String> descImg) {
-        this.descImg = descImg;
-    }
-
-    public List<String> getTags() {
-        return tags;
-    }
-
-    public void setTags(List<String> tags) {
-        this.tags = tags;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public List<String> getAnswers() {
-        return answers;
-    }
-
-    public void setAnswers(List<String> answers) {
-        this.answers = answers;
+    public void setUid(int uid) {
+        this.uid = uid;
     }
 
     public Integer getFollow() {

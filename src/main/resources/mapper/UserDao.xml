@@ -12,6 +12,9 @@
     <select id="findUserById" parameterType="int" resultType="com.ibinq.user.entity.User">
         SELECT * FROM USER WHERE id=#{id}
     </select>
+    <select id="findUserByUsernameAndPassworld" parameterType="String" resultType="com.ibinq.user.entity.User">
+        SELECT * FROM USER WHERE username=#{username} AND password=#{password}
+    </select>
     <select id="findUserAll" parameterType="int" resultType="com.ibinq.user.entity.User">
         SELECT * FROM USER ORDER BY id LIMIT #{offset}, #{limit}
     </select>
