@@ -14,54 +14,7 @@
     }
 </style>
 <body style="background-color: #F3F3F3;overflow:-Scroll;overflow-x:hidden">
-<div class="row" style="height: 55px;width:100%;background-color: white;box-shadow:1px 1px 1px #DDDFE0;position: fixed">
-    <div class="col-md-3">
-    </div>
-    <div class="col-md-6">
-        <div class="row" style="margin-top: 5px ;" >
-            <div class="col-md-1">
-                <img src="../../../img/logo.png" style="cursor: pointer;">
-            </div>
-            <div class="col-md-1" style="margin-top: 10px">
-                <a href="/user/home" style="text-decoration: none;cursor: pointer;"><span style="font-family: 'Adobe Caslon Pro';font-size: 16px;">首页</span></a>
-            </div>
-            <div class="col-md-1" style="margin-top: 10px">
-                <a style="text-decoration: none;cursor: pointer;"><span style="font-family: 'Adobe Caslon Pro';font-size: 16px;">发现</span></a>
-            </div>
-            <div class="col-md-1" style="margin-top: 10px">
-                <a style="text-decoration: none;cursor: pointer;"><span style="font-family: 'Adobe Caslon Pro';font-size: 16px;">话题</span></a>
-            </div>
-            <div class="col-md-3" style="margin-top: 10px">
-                <input type="text"  style="height: 30px;width: 230px" id="questionContent" placeholder="搜索你感兴趣的内容...">
-            </div>
-            <div class="col-md-1" style="margin-top: 10px">
-                <button data-toggle="modal" data-target="#questionmodal" class="btn btn-primary" style="background-color: #0F88EB">提问</button>
-            </div>
-            <div class="col-md-1" style="margin-top: 7px">
-                <img src="../../../img/message.png" >
-            </div>
-            <div class="col-md-1" style="margin-top: 10px">
-                <img src="../../../img/duihua.png" >
-            </div>
-            <c:if test="${sessionScope.user!=null}">
-                ${sessionScope.user.username}
-            </c:if>
-            <c:if test="${sessionScope.user==null}">
-                <div class="col-md-1" style="margin-top: 10px">
-                    <a href="/user/loginPage"><span >登录</span></a>
-                </div>
-                <div class="col-md-1" style="margin-top: 10px">
-                    <a href="/user/registerPage"><span >注册</span></a>
-                </div>
-            </c:if>
-
-
-        </div>
-
-    </div>
-    <div class="col-md-3">
-    </div>
-</div>
+<%@include file="../public/header.jsp"%>
 <div class="row" style="height: 205px;width:100%;background-color: white;box-shadow:1px 1px 1px #DDDFE0;position: fixed;margin-top: 60px">
     <div class="col-md-3">
     </div>
