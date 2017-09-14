@@ -30,9 +30,10 @@ public class QuestionController {
     private Question question = new Question();
 
     @RequestMapping(value = "/addQuestion",method = RequestMethod.GET)
-    public String addQuestion(@RequestParam("questionTitle") String questionTitle, HttpSession session , Model model){
+    public String addQuestion(@RequestParam("questionTitle") String questionTitle,@RequestParam("questionContent") String questionContent, HttpSession session , Model model){
         User user = (User) session.getAttribute("user");
         question.setTitle(questionTitle);
+        question.setContent(questionContent);
         question.setUid(user.getId());
         questionService.addQuestion(question);
         return "user/home";

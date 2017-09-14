@@ -6,8 +6,8 @@
 <mapper namespace="com.ibinq.question.dao.QuestionDao">
     <!--目的：为dao接口提供sql语句配置-->
     <insert id="addQuestion" parameterType="com.ibinq.question.entity.Question" >
-        INSERT INTO question(title,uid)
-        VALUES (#{title},#{uid})
+        INSERT INTO question(title,uid,content)
+        VALUES (#{title},#{uid},#{content})
     </insert>
     <select id="findQuestionById" parameterType="int" resultType="com.ibinq.question.entity.Question">
         SELECT * FROM question WHERE id=#{id}

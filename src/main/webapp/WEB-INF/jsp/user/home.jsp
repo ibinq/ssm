@@ -7,6 +7,7 @@
 <!-- 最新版本的 Bootstrap -->
 <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="../../../rs/js/wangEditor.js"></script>
 <style>
  /*   div{
         border: 1px solid red;
@@ -85,8 +86,31 @@
     <div class="col-md-3"></div>
 </div>
 
-
+<%--提问时的弹出框--%>
 <div class="modal fade" id="questionmodal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content"  style="height: 400px;width: 800px">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">写下你的问题</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <input type="text" id="questionTitle" class="form-control" placeholder="问题标题">
+                </div>
+                <div id="editor" style="margin-top: 5px ;width: 400px;height: 300px;">
+                    <p class="questionContent">问题背景、条件等详细信息</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" onclick="havaQuestion()" class="btn btn-primary">提交问题</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<%--登录时的弹出框--%>
+<div class="modal fade" id="login" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -106,11 +130,24 @@
 
 </body>
 <script>
-   function havaQuestion() {
-       var questionTitle = $("#questionTitle").val();
-       //alert(questionTitle);
-       location.href="/question/addQuestion?questionTitle="+questionTitle;
-    }
+    $(function () {
+        /*富文本*/
+        var E = window.wangEditor
+        var editor = new E('#editor')
+        // 下面两个配置，使用其中一个即可显示“上传图片”的tab。但是两者不要同时使用！！！
+        editor.customConfig.uploadImgShowBase64 = true   // 使用 base64 保存图片
+//         editor.customConfig.uploadImgServer = '/upload'  // 上传图片到服务器
 
+        editor.create()
+
+    });
+
+
+    function havaQuestion() {
+        var questionTitle = $("#questionTitle").val();
+        var questionContent = $(".questionContent").html();
+        alert(questionContent)
+        location.href="/question/addQuestion?questionTitle="+questionTitle+"&questionContent="+questionContent;
+    }
 </script>
 </html>

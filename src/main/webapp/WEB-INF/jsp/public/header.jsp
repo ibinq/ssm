@@ -45,7 +45,7 @@
             </c:if>
             <c:if test="${sessionScope.user==null}">
                 <div class="col-md-1" style="margin-top: 10px">
-                    <a href="/user/loginPage"><span >登录</span></a>
+                    <a href="/user/loginPage" <%--data-toggle="modal" data-target="#login"--%>><span >登录</span></a>
                 </div>
                 <div class="col-md-1" style="margin-top: 10px">
                     <a href="/user/registerPage"><span >注册</span></a>
