@@ -15,9 +15,10 @@
         padding: 0;
     }
 </style>
-<body style="background-color: #F3F3F3;overflow:-Scroll;overflow-x:hidden">
+<body style="background-color: #F3F3F3;overflow-y:scroll;overflow-x:hidden">
 <%@include file="../public/header.jsp"%>
-<div class="row" style="height: 205px;width:100%;background-color: white;box-shadow:1px 1px 1px #DDDFE0;position: fixed;margin-top: 60px">
+<div>
+<div class="row" style="height: 205px;width:100%;background-color: white;box-shadow:1px 1px 1px #DDDFE0;position: fixed;margin-top: 55px">
     <div class="col-md-3">
     </div>
     <div class="col-md-6">
@@ -42,6 +43,56 @@
 
     </div>
 </div>
+<div class="row" style="width:100%;position: fixed;margin-top: 270px">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-4" style="margin-top: -5px;z-index: 1">
+
+        <c:forEach items="${answers}" var="answer">
+            <div class="row" style="height: 280px;margin-top: 10px;background-color: white;box-shadow:1px 1px 2px #DDDFE0">
+                <div class="col-md-12">
+                    <div class="row" >
+                        <div class="col-md-12">
+                            <span>来自话题：电影</span>
+                        </div>
+                    </div>
+                    <div class="row" >
+                        <div class="col-md-12">
+                           <%-- <a  href="/question/findQuestion?id=${question.id}" style="cursor: pointer"><span>${question.title}</span></a>--%>
+                        </div>
+                    </div>
+                    <div class="row" >
+                        <div class="col-md-12">
+                                ${answer.content}
+                        </div>
+                    </div>
+                        <%--  <div class="row" >
+                              <div class="col-md-12">
+
+                              </div>
+                          </div>
+                          <div class="row" >
+                              <div class="col-md-12">
+
+                              </div>
+                          </div>--%>
+                </div>
+            </div>
+        </c:forEach>
+    </div>
+    <div class="col-md-2" style="margin-left: 60%;margin-top: 5px; position: fixed;">
+        <div class="row" style="height: 175px;background-color: white;box-shadow:1px 1px 2px #DDDFE0">
+            <div class="col-md-12"></div>
+        </div>
+        <div class="row" style="height: 300px;margin-top: 10px;background-color: white;box-shadow:1px 1px 2px #DDDFE0">
+            <div class="col-md-12"></div>
+        </div>
+    </div>
+    <div class="col-md-3" >
+
+
+    </div>
+</div>
 <div class="row" id="answer" style="display: none;padding-top: 520px">
     <div class="col-md-12">
         <div id="editor">
@@ -52,20 +103,8 @@
         <button onclick="submitAnswer('${question.id}')">提交回答</button>
     </div>
 </div>
-<c:forEach items="${answers}" var="answer">
-    <div class="row" style="padding-top: 300px">
 
-          <div class="col-md-3"></div>
-          <div class="col-md-4" style="margin-top: 65px;z-index: -1">
-            ${answer.content}
-          </div>
-          <div class="col-md-2">
-
-          </div>
-          <div class="col-md-3"></div>
-    </div>
-</c:forEach>
-
+</div>
 
 
 </body>
@@ -74,8 +113,6 @@
         var E = window.wangEditor
         var editor = new E('#editor')
         editor.create()
-
-
     });
 
     function  haveAnswer(id) {
