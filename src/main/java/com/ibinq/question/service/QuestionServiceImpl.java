@@ -1,6 +1,7 @@
 package com.ibinq.question.service;
 
 import com.ibinq.question.dao.QuestionDao;
+import com.ibinq.question.entity.Answer;
 import com.ibinq.question.entity.Question;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,5 +35,13 @@ public class QuestionServiceImpl implements QuestionService {
 
     public boolean updateQuestion(Question question) {
         return questionDao.updateQuestion(question);
+    }
+
+    public boolean addAnswer(Answer answer) {
+        return questionDao.addAnswer(answer);
+    }
+
+    public List<Answer> findAnswerById(int id) {
+        return questionDao.findAnswerById(id);
     }
 }

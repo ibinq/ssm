@@ -1,5 +1,6 @@
 package com.ibinq.question.service;
 
+import com.ibinq.question.entity.Answer;
 import com.ibinq.question.entity.Question;
 
 import java.util.List;
@@ -17,4 +18,8 @@ public interface QuestionService {
     Question findQuestionByName(String name);
 
     boolean updateQuestion(Question question);
+
+
+    boolean addAnswer(Answer answer);
+    List<Answer> findAnswerById(int id);
 }

@@ -12,6 +12,9 @@
     <select id="findQuestionById" parameterType="int" resultType="com.ibinq.question.entity.Question">
         SELECT * FROM question WHERE id=#{id}
     </select>
+    <select id="findAnswerById" parameterType="int" resultType="com.ibinq.question.entity.Answer">
+        SELECT * FROM answer WHERE qid=#{id}
+    </select>
 
     <select id="findQuestionByName" parameterType="String" resultType="com.ibinq.question.entity.Question">
         SELECT * FROM question WHERE title=#{name}
@@ -35,5 +38,11 @@
         WHERE
           id=#{id}
     </update>
+
+
+    <insert id="addAnswer" parameterType="com.ibinq.question.entity.Answer" >
+        INSERT INTO answer(content,answerTime,qid,uid)
+        VALUES (#{content},#{answerTime},#{qid},#{uid})
+    </insert>
 
 </mapper>

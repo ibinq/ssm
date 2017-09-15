@@ -56,21 +56,21 @@
                         <a  href="/question/findQuestion?id=${question.id}" style="cursor: pointer"><span>${question.title}</span></a>
                     </div>
                 </div>
-               <%-- <div class="row" >
-                    <div class="col-md-12">
-
-                    </div>
-                </div>
                 <div class="row" >
                     <div class="col-md-12">
-
+                        ${question.content}
                     </div>
                 </div>
-                <div class="row" >
-                    <div class="col-md-12">
+                    <%--  <div class="row" >
+                          <div class="col-md-12">
 
-                    </div>
-                </div>--%>
+                          </div>
+                      </div>
+                      <div class="row" >
+                          <div class="col-md-12">
+
+                          </div>
+                      </div>--%>
             </div>
         </div>
         </c:forEach>
@@ -99,7 +99,10 @@
                     <input type="text" id="questionTitle" class="form-control" placeholder="问题标题">
                 </div>
                 <div id="editor" style="margin-top: 5px ;width: 400px;height: 300px;">
-                    <p class="questionContent">问题背景、条件等详细信息</p>
+                    <div class="questionContent">
+                        <p >问题背景、条件等详细信息</p>
+                    </div>
+
                 </div>
             </div>
             <div class="modal-footer">
@@ -146,7 +149,7 @@
     function havaQuestion() {
         var questionTitle = $("#questionTitle").val();
         var questionContent = $(".questionContent").html();
-        alert(questionContent)
+//        alert(questionContent)
         location.href="/question/addQuestion?questionTitle="+questionTitle+"&questionContent="+questionContent;
     }
 </script>

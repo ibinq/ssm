@@ -1,5 +1,6 @@
 package com.ibinq.question.controller;
 
+import com.ibinq.question.entity.Answer;
 import com.ibinq.question.entity.Question;
 import com.ibinq.question.service.QuestionService;
 import com.ibinq.user.entity.User;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/9/13.
@@ -29,6 +32,8 @@ public class QuestionController {
 
     private Question question = new Question();
 
+    private Answer answer = new Answer();
+
     @RequestMapping(value = "/addQuestion",method = RequestMethod.GET)
     public String addQuestion(@RequestParam("questionTitle") String questionTitle,@RequestParam("questionContent") String questionContent, HttpSession session , Model model){
         User user = (User) session.getAttribute("user");
@@ -42,10 +47,12 @@ public class QuestionController {
     @RequestMapping(value = "/findQuestion",method = RequestMethod.GET)
     public String findQuestion(@RequestParam("id")int id, Model model){
         Question question = questionService.findQuestionById(id);
+        List<Answer> answers = questionService.findAnswerById(question.getId());
         int i = question.getLook() == null ? 1 : question.getLook() + 1;
         question.setLook(i);
         questionService.updateQuestion(question);
         model.addAttribute("question",question);
+        model.addAttribute("answers",answers);
         return "question/detail";
     }
 
@@ -56,6 +63,18 @@ public class QuestionController {
         question.setFollow(i);
         questionService.updateQuestion(question);
         model.addAttribute("question",question);
+        return "question/detail";
+    }
+
+    @RequestMapping(value = "/addAnswer")
+    public String addAnswer(@RequestParam("id")int id,@RequestParam("answerContent")String answerContent,Model model, HttpSession session){
+        User user = (User) session.getAttribute("user");
+        System.out.print(id);
+        answer.setQiu(id);
+        answer.setUid(user.getId());
+        answer.setContent(answerContent);
+        answer.setAnswerTime(new Date());
+        questionService.addAnswer(answer);
         return "question/detail";
     }
 
